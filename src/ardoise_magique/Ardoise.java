@@ -75,15 +75,15 @@ public class Ardoise extends JFrame  {
 	   	    
 	    this.initMenu();	    
 	    this.initToolBar();
-	  
-	    pan.addMouseMotionListener(new motionListener());
-	    pan.addMouseListener(new mouseListener());
 	    
 	    container.add(pan, BorderLayout.CENTER); 
-	   
+	    
 	    //On prévient notre JFrame que notre JPanel sera son content pane
 	    this.setContentPane(container);
-
+	    
+	    this.addMouseMotionListener(new motionListener());
+	    this.addMouseListener(new mouseListener());
+	    
 	    //Et enfin, la rendre visible   
 	    this.setVisible(true);
 	    
@@ -271,9 +271,8 @@ public class Ardoise extends JFrame  {
 		@Override
 		public void mouseDragged(MouseEvent e) {
 			
-			System.out.println("coordonnée X : "+ e.getX()+" et coordonnée Y "+ e.getY());
 			//si la souris est dans la zone de l'ardoise
-			 if (contains(e.getX(),e.getY()) && e.getY() > 60) {				 
+			 if (contains(e.getX(),e.getY()) && e.getY() > 100) {				 
 				 Point newPoint = new Point();					 
 				 newPoint.setX(e.getX()-5);
 				 newPoint.setY(e.getY()-5);
@@ -285,9 +284,7 @@ public class Ardoise extends JFrame  {
 		}
 		
 		@Override
-		public void mouseMoved(MouseEvent e) {
-			System.out.println("mouseMoved => X = "+ e.getX()+" Y = "+e.getY());
-		}
+		public void mouseMoved(MouseEvent e) {}
 	}
 	
 	public class mouseListener implements MouseListener{
